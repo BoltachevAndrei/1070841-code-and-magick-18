@@ -43,6 +43,11 @@ var renderResult = function (ctx, names, times, count) {
   ctx.fillText(Math.round(times[count]), CLOUD_X + BAR_GAP * (count + 1) + BAR_WIDTH * count, CLOUD_Y + CLOUD_HEIGHT - GAP * 4 - FONT_GAP - barHeight);
 };
 
+var showResultText = function (ctx, string1, string2) {
+  ctx.fillText(string1, CLOUD_X + GAP * 2, CLOUD_Y + GAP + FONT_GAP);
+  ctx.fillText(string2, CLOUD_X + GAP * 2, CLOUD_Y + GAP + FONT_GAP * 2);
+};
+
 window.renderStatistics = function (ctx, names, times) {
   var barsCount = Math.min(names.length, times.length);
 
@@ -52,11 +57,9 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = 'PT Mono 16px';
 
   if (names.length !== times.length) {
-    ctx.fillText('Ошибка входных данных: количество игроков', CLOUD_X + GAP * 2, CLOUD_Y + GAP + FONT_GAP);
-    ctx.fillText('не равно количеству результатов!', CLOUD_X + GAP * 2, CLOUD_Y + GAP + FONT_GAP * 2);
+    showResultText(ctx, 'Ошибка входных данных: количество игроков', 'не равно количеству результатов!');
   } else {
-    ctx.fillText('Список результатов:', CLOUD_X + GAP * 2, CLOUD_Y + GAP + FONT_GAP * 2);
-    ctx.fillText('Ура вы победили!', CLOUD_X + GAP * 2, CLOUD_Y + GAP + FONT_GAP);
+    showResultText(ctx, 'Список результатов:', 'Ура вы победили!');
   }
 
   for (var i = 0; i < barsCount; i++) {
