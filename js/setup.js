@@ -34,11 +34,15 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
+var showElement = function (element) {
+  element.classList.remove('hidden');
+};
+
 for (var i = 0; i < WIZARDS_COUNT; i++) {
   wizards[i] = generateWizard();
   fragment.appendChild(renderWizard(wizards[i]));
 }
 
 setupSimilar.querySelector('.setup-similar-list').appendChild(fragment);
-setupSimilar.classList.remove('hidden');
-userDialog.classList.remove('hidden');
+showElement(setupSimilar);
+showElement(userDialog);
