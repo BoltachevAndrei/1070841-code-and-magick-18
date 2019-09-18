@@ -25,23 +25,24 @@ var generateWizard = function () {
   return wizard;
 };
 
-var renderWizard = function (wizard) {
-  var wizardElement = wizardTemplate.cloneNode(true);
+var renderWizards = function (wizardsCount) {
+  var wizardElement;
 
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  return wizardElement;
+  for (var i = 0; i < wizardsCount; i++) {
+    wizards[i] = generateWizard();
+    wizardElement = wizardTemplate.cloneNode(true);
+    wizardElement.querySelector('.setup-similar-label').textContent = wizards[i].name;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizards[i].eyesColor;
+    wizardElement.querySelector('.wizard-coat').style.fill = wizards[i].coatColor;
+    fragment.appendChild(wizardElement);
+  }
 };
 
 var showElement = function (element) {
   element.classList.remove('hidden');
 };
 
-for (var i = 0; i < WIZARDS_COUNT; i++) {
-  wizards[i] = generateWizard();
-  fragment.appendChild(renderWizard(wizards[i]));
-}
+renderWizards(WIZARDS_COUNT);
 
 setupSimilar.querySelector('.setup-similar-list').appendChild(fragment);
 showElement(setupSimilar);
