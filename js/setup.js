@@ -42,8 +42,11 @@ var showElement = function (element) {
   element.classList.remove('hidden');
 };
 
-renderWizards(WIZARDS_COUNT);
+var renderElement = function (container, element) {
+  container.appendChild(element);
+};
 
-setupSimilar.querySelector('.setup-similar-list').appendChild(fragment);
+renderWizards(WIZARDS_COUNT);
+renderElement(setupSimilar.querySelector('.setup-similar-list'), fragment);
 showElement(setupSimilar);
 showElement(userDialog);
