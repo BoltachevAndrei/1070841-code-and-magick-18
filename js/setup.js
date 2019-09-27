@@ -65,30 +65,6 @@ var renderWizards = function (wizardsCount) {
   }
 };
 
-var onSetupEscPress = function (evt) {
-  if (evt.keyCode === ESCAPE_KEY && evt.target !== setupUserName) {
-    hideElement(setup);
-  }
-};
-
-var changeWizardSettings = function () {
-  var coatColor = getRandomElement(COAT_COLORS);
-  var eyesColor = getRandomElement(EYES_COLORS);
-  var fireballColor = getRandomElement(FIREBALL_COLORS);
-  wizardCoat.style.fill = coatColor;
-  coatColorInput.value = coatColor;
-  wizardEyes.style.fill = eyesColor;
-  eyesColorInput.value = eyesColor;
-  wizardFireball.setAttribute('style', 'background-color: ' + fireballColor);
-  fireballColorInput.value = fireballColor;
-};
-
-var onSetupWizardPress = function (evt) {
-  if (evt.keyCode === ENTER_KEY) {
-    changeWizardSettings();
-  }
-};
-
 var showElement = function (element) {
   element.classList.remove('hidden');
 };
@@ -97,15 +73,62 @@ var hideElement = function (element) {
   element.classList.add('hidden');
 };
 
+var changeWizardCoat = function () {
+  var coatColor = getRandomElement(COAT_COLORS);
+  wizardCoat.style.fill = coatColor;
+  coatColorInput.value = coatColor;
+};
+
+var changeWizardEyes = function () {
+  var eyesColor = getRandomElement(EYES_COLORS);
+  wizardEyes.style.fill = eyesColor;
+  eyesColorInput.value = eyesColor;
+};
+
+var changeWizardFireball = function () {
+  var fireballColor = getRandomElement(FIREBALL_COLORS);
+  wizardFireball.setAttribute('style', 'background-color: ' + fireballColor);
+  fireballColorInput.value = fireballColor;
+};
+
+var onSetupEscPress = function (evt) {
+  if (evt.keyCode === ESCAPE_KEY && evt.target !== setupUserName) {
+    hideElement(setup);
+  }
+};
+
+var onWizardCoatPress = function (evt) {
+  if (evt.keyCode === ENTER_KEY && evt.target === wizardCoat) {
+    changeWizardCoat();
+  }
+};
+
+var onWizardEyesPress = function (evt) {
+  if (evt.keyCode === ENTER_KEY && evt.target === wizardEyes) {
+    changeWizardEyes();
+  }
+};
+
+var onWizardFireballPress = function (evt) {
+  if (evt.keyCode === ENTER_KEY && evt.target === wizardFireball) {
+    changeWizardFireball();
+  }
+};
+
 var showSetup = function () {
   showElement(setup);
   document.addEventListener('keydown', onSetupEscPress);
-  setupWizard.addEventListener('keydown', onSetupWizardPress);
+  document.addEventListener('keydown', onWizardCoatPress);
+  document.addEventListener('keydown', onWizardEyesPress);
+  document.addEventListener('keydown', onWizardFireballPress);
 };
 
 var hideSetup = function () {
   hideElement(setup);
   document.removeEventListener('keydown', onSetupEscPress);
+  document.removeEventListener('keydown', onWizardCoatPress);
+  document.removeEventListener('keydown', onWizardEyesPress);
+  document.removeEventListener('keydown', onWizardFireballPress);
 };
 
 var renderElement = function (container, element) {
@@ -128,8 +151,16 @@ setupClose.addEventListener('click', function () {
   hideSetup();
 });
 
-setupWizard.addEventListener('click', function () {
-  changeWizardSettings();
+wizardCoat.addEventListener('click', function () {
+  changeWizardCoat();
+});
+
+wizardEyes.addEventListener('click', function () {
+  changeWizardEyes();
+});
+
+wizardFireball.addEventListener('click', function () {
+  changeWizardFireball();
 });
 
 setupOpenIcon.addEventListener('keydown', function (evt) {
@@ -150,5 +181,7 @@ showElement(setupSimilar);
 setElementAttributes(setupForm, FORM_ATTRIBUTES);
 setElementAttributes(setupOpenIcon, TABINDEX_ATTRIBUTE);
 setElementAttributes(setupClose, TABINDEX_ATTRIBUTE);
-setElementAttributes(setupWizard, TABINDEX_ATTRIBUTE);
+setElementAttributes(wizardCoat, TABINDEX_ATTRIBUTE);
+setElementAttributes(wizardEyes, TABINDEX_ATTRIBUTE);
+setElementAttributes(wizardFireball, TABINDEX_ATTRIBUTE);
 setElementAttributes(setupUserName, USERNAME_ATTRIBUTES);
