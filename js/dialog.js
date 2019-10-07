@@ -162,6 +162,19 @@
     document.addEventListener('mouseup', onMouseUp);
   });
 
+  var onSaveDataSuccess = function () {
+    hideSetup();
+  };
+
+  var onSaveDataError = function (errorMessage) {
+    window.utils.createErrorBanner(errorMessage, window.utils.SAVE_DATA_BANNER_MESSAGE);
+  };
+
+  setupForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.backend.save(new FormData(setupForm), onSaveDataSuccess, onSaveDataError);
+  });
+
   window.utils.setElementAttributes(setupForm, FORM_ATTRIBUTES);
   window.utils.setElementAttributes(setupOpenIcon, TABINDEX_ATTRIBUTE);
   window.utils.setElementAttributes(setupClose, TABINDEX_ATTRIBUTE);
