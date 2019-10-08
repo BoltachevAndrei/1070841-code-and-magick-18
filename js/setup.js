@@ -76,5 +76,5 @@
     container.appendChild(element);
   };
 
-  window.backend.load(window.backend.URL, onLoadDataSuccess, onLoadDataError);
+  window.backend.load(onLoadDataSuccess, onLoadDataError, window.backend.URL);
 })();

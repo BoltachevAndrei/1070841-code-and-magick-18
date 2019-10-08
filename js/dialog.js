@@ -172,7 +172,7 @@
 
   setupForm.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    window.backend.save(window.backend.URL, new FormData(setupForm), onSaveDataSuccess, onSaveDataError);
+    window.backend.save(onSaveDataSuccess, onSaveDataError, new FormData(setupForm), window.backend.URL);
   });
 
   window.utils.setElementAttributes(setupForm, FORM_ATTRIBUTES);
