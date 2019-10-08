@@ -1,6 +1,7 @@
 'use strict';
 
 (function () {
+  var REQUEST_OK = 200;
   window.backend = {
     URL: 'https://js.dump.academy/code-and-magick',
     load: function (url, onLoad, onError) {
@@ -8,7 +9,7 @@
       xhr.responseType = 'json';
       xhr.open('GET', url + '/data');
       xhr.addEventListener('load', function () {
-        if (xhr.status === 200) {
+        if (xhr.status === REQUEST_OK) {
           onLoad(xhr.response);
         } else {
           onError('Ошибка! Статус ответа сервера: ' + xhr.status + ' ' + xhr.statusText);
@@ -23,7 +24,7 @@
       var xhr = new XMLHttpRequest();
       xhr.responseType = 'json';
       xhr.addEventListener('load', function () {
-        if (xhr.status === 200) {
+        if (xhr.status === REQUEST_OK) {
           onLoad();
         } else {
           onError('Ошибка! Статус ответа сервера: ' + xhr.status + ' ' + xhr.statusText);
