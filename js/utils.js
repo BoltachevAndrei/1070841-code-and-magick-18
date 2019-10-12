@@ -6,7 +6,7 @@
 
   window.utils = {
     SAVE_DATA_BANNER_MESSAGE: '<br>' + 'Параметры магов не отправлены',
-    LOAD_DATA_BANNER_MESSAGE: '<br>' + 'Параметры магов не получены,' + '<br>' + 'для магов будут применены случайные параметры.',
+    LOAD_DATA_BANNER_MESSAGE: '<br>' + 'Параметры магов не получены,',
     getMaxElement: function (arr, length) {
       var maxElement = arr[0];
       for (var i = 0; i < length; i++) {
