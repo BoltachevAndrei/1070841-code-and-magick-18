@@ -16,6 +16,7 @@
     maxlength: '25',
     required: ''
   };
+  var IMAGE_EXTENSIONS = ['bmp', 'svg', 'jpg', 'jpeg'];
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = window.setup.setupWindow.querySelector('.setup-close');
   var setupOpenIcon = document.querySelector('.setup-open-icon');
@@ -33,6 +34,24 @@
     top: window.setup.setupWindow.style.top,
     left: window.setup.setupWindow.style.left
   };
+  var avatarChooser = document.querySelector('.upload').querySelector('input[type="file"]');
+  var avatarImage = document.querySelector('.setup-user-pic');
+
+  avatarChooser.addEventListener('change', function () {
+    var file = avatarChooser.files[0];
+    if (file) {
+      var isPicture = IMAGE_EXTENSIONS.some(function (element) {
+        return file.name.toLowerCase().endsWith(element);
+      });
+      if (isPicture) {
+        var reader = new FileReader();
+        reader.addEventListener('load', function () {
+          avatarImage.src = reader.result;
+        });
+        reader.readAsDataURL(file);
+      }
+    }
+  });
 
   var changeWizardCoat = function () {
     var newColor = window.utils.colorize(wizardCoat, window.setup.COAT_COLORS);
