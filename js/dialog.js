@@ -16,7 +16,7 @@
     maxlength: '25',
     required: ''
   };
-  var IMAGE_EXTENSIONS = ['bmp', 'svg', 'jpg', 'jpeg'];
+  var IMAGE_EXTENSIONS = ['bmp', 'svg', 'jpg', 'jpeg', 'png', 'gif'];
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = window.setup.setupWindow.querySelector('.setup-close');
   var setupOpenIcon = document.querySelector('.setup-open-icon');
